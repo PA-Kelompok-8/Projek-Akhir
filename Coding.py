@@ -198,4 +198,204 @@ def ngurut():
     mycursor.execute("SELECT * FROM customer")
     result = mycursor.fetchall()
 # sort data by saldo using shell sort
+# sort data by saldo using shell sort
+    shellSort(result, 3)  
+
+# Ngeprint data yang ter sorting
+    table = PrettyTable()
+    table.field_names = ["ID","Nama","No. Rekening", "Saldo","PIN"]
+    
+    # add rows to the table
+    for row in result:
+        table.add_row(row)
+    
+    # print the table
+    print(table)
+
+# Koneksi ke database
+def konek():
+    try:
+        mydb = None
+        mydb = mysql.connector.connect(
+        host="db4free.net",
+        user="yusril",
+        password="yusril1234",
+        database="kelompok8"
+        )
+        print("Database Connected")
+    except mysql.connector.Error as z:
+        print(f"Erorr: {z}")
+    return mydb
+
+# fungsi untuk login teller
+def loginteller():
+    username = input("Masukkan username: ")
+    password = input("Masukkan password: ")
+    query = "SELECT * FROM teller WHERE username = %s AND password = %s"
+    value = (username, password)
+    cursor = mydb.cursor()
+    cursor.execute(query, value)
+    result = cursor.fetchall()
+
+    if result:
+        print("Login berhasil")
+        teller_menu()
+    else:
+        print("Login gagal")
+        
+# fungsi untuk login cs
+def logincs():
+    username = input("Masukkan username CS: ")
+    password = input("Masukkan password CS: ")
+
+    # query untuk mencari data admin di tabel cs
+    query = "SELECT * FROM cs WHERE username = %s AND password = %s"
+    value = (username, password)
+
+    # eksekusi query
+    cursor = mydb.cursor()
+    cursor.execute(query, value)
+    result = cursor.fetchall()
+
+    if result:
+        print("Login berhasil")
+        cs_menu()
+    else:
+        print("Login gagal")
+
+# Unruk melihat data nasabah
+def datanasabah():
+    cursor = mydb.cursor()
+    cursor.execute("SELECT * FROM customer")
+    result = cursor.fetchall()
+
+    if result:
+        table = PrettyTable()
+        table.field_names = ["ID","Nama","No. Rekening", "Saldo","PIN"]
+        for row in result:
+            table.add_row(row)
+        print(table)
+    else:
+        print("Tidak ada data nasabah")
+
+# Untuk membuat akun / buka rekening
+def buatnasabah():
+    try:
+        id = input("Masukkan ID Nasabah: ")
+        nama = input("Masukkan nama: ")
+        rek = input("Masukkan nomor rekening: ")
+        saldo = input("Masukkan saldo awal: ")
+        pin = input("Masukkan PIN: ")
+
+        # Menginput data ke dalam tabel MySQL
+        mycursor = mydb.cursor()
+        sql = "INSERT INTO customer (ID, nama, norek, saldo, PIN) VALUES (%s, %s, %s, %s,%s)"
+        val = (id,nama, rek, saldo,  pin)
+        mycursor.execute(sql, val)
+
+        # Commit perubahan dan menutup koneksi ke database
+        mydb.commit()
+    except:
+        print("Data Error")
+
+#Untuk menarik saldo nasabah
+def kurangsaldo():
+    try:
+        id = input("Masukkan ID nasabah yang ingin menarik saldo:")
+        saldo = int(input("Masukkan jumlah saldo: "))
+
+        # Query SQL untuk mengambil data saldo
+        mycursor = mydb.cursor()
+        sql = "SELECT saldo FROM customer WHERE id = %s"
+        val = (id,)
+
+        # Eksekusi query
+        mycursor.execute(sql, val)
+
+        # Ambil data saldo dari hasil query
+        result = mycursor.fetchone()
+        saldo_db = result[0]
+
+        # Kurangi saldo di database dengan inputan saldo
+        saldo2 = saldo_db - int(saldo)
+
+        # Query SQL untuk mengupdate data
+        if saldo2 > 0:
+            sql = "UPDATE customer SET saldo = %s WHERE id = %s"
+            val = (saldo2, id)
+
+            # Eksekusi query
+            mycursor.execute(sql, val)
+
+            # Commit perubahan
+            mydb.commit()
+
+            # Cetak jumlah baris yang diupdate
+            print(mycursor.rowcount, "Saldo Telah ditarik")
+        else:
+            print("Inputan harus benar")
+    except:
+        print("Error")
+    
+#Untuk menambah saldo
+def tambahsaldo():
+    try:
+        id = input("Masukkan ID nasabah yang ingin memasukkan saldo:")
+        saldo = int(input("Masukkan jumlah saldo: "))
+
+        # Query SQL untuk mengambil data saldo
+        mycursor = mydb.cursor()
+        sql = "SELECT saldo FROM customer WHERE id = %s"
+        val = (id,)
+
+        # Eksekusi query
+        mycursor.execute(sql, val)
+
+        # Ambil data saldo dari hasil query
+        result = mycursor.fetchone()
+        saldo_db = result[0]
+
+        # Kurangi saldo di database dengan inputan saldo
+        saldo2 = saldo_db + int(saldo)
+
+        # Query SQL untuk mengupdate data
+        if saldo2 > 0:
+            sql = "UPDATE customer SET saldo = %s WHERE id = %s"
+            val = (saldo2, id)
+
+            # Eksekusi query
+            mycursor.execute(sql, val)
+
+            # Commit perubahan
+            mydb.commit()
+
+            # Cetak jumlah baris yang diupdate
+            print(mycursor.rowcount, "Saldo telah ditambah")
+        else:
+            print("Inputan Harus benar")
+    except:
+            print("Error")
+
+# Untuk memanggil fungsi untuk menyambung database          
+mydb = konek()
+
+# Menu awal
+def menu_login():
+    while True:
+        print("Menu Bank:")
+        print("1. Login Teller")
+        print("2. Login CS")
+        print("3. Exit")
+        menu = input("Pilih menu: ")
+
+        if menu == "1":
+                loginteller()
+        elif menu == "2":
+                logincs()
+        elif menu == "3":
+            print("Program telah berakhir")
+            break
+        else:
+                print("Menu tidak tersedia")
+menu_login()
 
