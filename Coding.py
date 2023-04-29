@@ -197,19 +197,19 @@ def ngurut():
     mycursor = mydb.cursor()
     mycursor.execute("SELECT * FROM customer")
     result = mycursor.fetchall()
-# sort data by saldo using shell sort
-# sort data by saldo using shell sort
+    
+# mengurutkan data menggunakan shell sort
     shellSort(result, 3)  
 
-# Ngeprint data yang ter sorting
+# Ngeprint data yang terurut
     table = PrettyTable()
     table.field_names = ["ID","Nama","No. Rekening", "Saldo","PIN"]
     
-    # add rows to the table
+    # menambahkan baris pada tabel
     for row in result:
         table.add_row(row)
     
-    # print the table
+    # print tabel
     print(table)
 
 # Koneksi ke database
@@ -263,7 +263,7 @@ def logincs():
     else:
         print("Login gagal")
 
-# Unruk melihat data nasabah
+# Untuk melihat data nasabah
 def datanasabah():
     cursor = mydb.cursor()
     cursor.execute("SELECT * FROM customer")
@@ -376,7 +376,7 @@ def tambahsaldo():
     except:
             print("Error")
 
-# Untuk memanggil fungsi untuk menyambung database          
+# Untuk memanggil fungsi untuk menyambung ke database          
 mydb = konek()
 
 # Menu awal
