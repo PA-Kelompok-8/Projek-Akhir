@@ -32,6 +32,7 @@ Program ini menggunakan algoritma Shell Sort yang digunakan untuk mengurutkan da
 
 
 Fitur dan Fungsionalitas : 
+
 Fitur : 
 
 Menu Utama :
@@ -59,6 +60,7 @@ Menu Customer Service :
 8.	Keluar dari CS
 
 Fungsionalitas :
+
 Program ini merupakan program untuk pegawai bank (Teller dan Customer Service) yang bertugas mengatur antrian nasabah. Pada menu teller, bisa melayani nasabah yang ingin melakukan setor tunai dan menarik saldo. Selain itu, Teller juga dapat menambahkan nama nasabah ke dalam antrian serta bisa melihat dan memanggil nasabah dari antrian. Lalu, pada menu customer service, kurang lebih sama dengan teller yaitu bisa menambah dan melihat, nama nasabah dari antrian. Bedanya, Customer service bisa melihat data nasabah, mencari data nasabah, mengurutkan data nasabah berdasarkan saldo dari yang terbesar ke terkecil, serta membuat rekening atau akun nasabah. 
 
 
