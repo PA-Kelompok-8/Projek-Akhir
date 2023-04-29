@@ -1,4 +1,10 @@
 
+Kelompok 8 ASD
+
+Deskripsi Program :
+Program ini adalah program untuk karyawan bank untuk mengatur antrian bank yang menggunakan struktur data queue (antrian). Queue program ini menggunakan prinsip FIFO (First in First Out) yaitu nasabah yang pertama kali masuk antrian akan dilayani terlebih dahulu. Program ini menggunakan Jump search untuk mencari nama nasabah dalam antrian. Lalu program ini juga menggunakan shell sort untuk mengurutkan saldo nasabah dari yang tertinggi ke terendah (Descending). Program ini menggunakan Database online untuk Login dan Menyimpan data nasabah.
+
+
 Struktur Projek : 
 -	Import Library : 
 berfungsi untuk mengimport suatu fungsi agar bisa dijalankan di dalam suatu program.
@@ -22,7 +28,38 @@ Didalam Program ini ada 2 class yaitu Class queue_teller dan Class queue_cs. Di 
 Program ini menggunakan algoritma Jump search yang dikombinasikan dengan linier search. Data daftar antrian dibagi menjadi beberapa bagian dengan ukuran yang ditentukan berdasarkan kuadrat dari Panjang list. Program kemudian mencari data di blok ini menggunakan linier search. Jika data yang di cari tidak ada di blok saat ini, program akan pindah ke blok berikutnya dengan menambahkan nilai awal dan akhir blok ke ukuran blok.Jika data ditemukan, program mengembalikan indeks data. Namun, jika tidak ada data yang ditemukan di semua blok, program akan mengeluarkan pesan bahwa tidak ada data yang ditemukan.
 -	Algoritma Sorting :
 Program ini menggunakan algoritma Shell Sort yang digunakan untuk mengurutkan data nasabah berdasarkan saldo dari yang terbesar ke terkecil. Algoritma ini bekerja dengan cara membagi list data menjadi beberapa bagian kemudian melakukan Insertion Sort pada setiap bagian secara terpisah. Setelah itu, nilai gap yang digunakan untuk membagi data dikurangi setengah dan proses Insertion Sort diulang pada setiap bagian hingga gap mencapai nilai 1.
- 
+
+
+
+Fitur dan Fungsionalitas : 
+	Fitur : 
+Menu Utama :
+1.	Login Teller
+2.	Login CS
+3.	Exit
+Menu Teller :
+1.	Menambah antrian
+2.	Melihat antrian
+3.	Memanggil antrian
+4.	Mencari antrian
+5.	Menambah saldo nasabah
+6.	Setor Tunai 
+7.	Keluar dari Teller
+Menu Customer Service :
+1.	Menambah antrian
+2.	Melihat antrian
+3.	Memanggil antrian
+4.	Mencari antrian
+5.	Melihat data nasabah
+6.	Mengurutkan data nasabah 
+7.	Buat Akun/ Rekening baru
+8.	Keluar dari CS
+
+	Fungsionalitas :
+Program ini merupakan program untuk pegawai bank (Teller dan Customer Service) yang bertugas mengatur antrian nasabah. Pada menu teller, bisa melayani nasabah yang ingin melakukan setor tunai dan menarik saldo. Selain itu, Teller juga dapat menambahkan nama nasabah ke dalam antrian serta bisa melihat dan memanggil nasabah dari antrian. Lalu, pada menu customer service, kurang lebih sama dengan teller yaitu bisa menambah dan melihat, nama nasabah dari antrian. Bedanya, Customer service bisa melihat data nasabah, mencari data nasabah, mengurutkan data nasabah berdasarkan saldo dari yang terbesar ke terkecil, serta membuat rekening atau akun nasabah. 
+
+
+
  Cara Penggunaan :
 1.	Pertama, user diminta memilih menu yang diinginkan antara Login sebagai Teller atau Login sebagai Customer service.
 
